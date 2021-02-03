@@ -1,0 +1,103 @@
+Arguments: 
+  /Users/alineco/.nvm/versions/node/v14.15.4/bin/node /usr/local/bin/yarn init
+
+PATH: 
+  /Users/alineco/.nvm/versions/node/v14.15.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/alineco/.nvm/versions/node/v14.15.4/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.4
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:136216:13)
+      at Interface.emit (events.js:315:20)
+      at Interface._ttyWrite (readline.js:875:16)
+      at ReadStream.onkeypress (readline.js:213:10)
+      at ReadStream.emit (events.js:315:20)
+      at emitKeys (internal/readline/utils.js:345:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1144:36)
+      at ReadStream.emit (events.js:315:20)
+      at addChunk (internal/streams/readable.js:309:12)
+
+npm manifest: 
+  {
+     "name": "node-slate",
+     "version": "1.9.8",
+     "description": "Node port of lord/slate",
+     "license": "Apache-2.0",
+     "type": "module",
+     "main": "build/index.html",
+     "repository": "github:center-key/node-slate",
+     "homepage": "https://node-slate.js.org",
+     "bugs": "https://github.com/center-key/node-slate/issues",
+     "docs": "https://github.com/center-key/node-slate#readme",
+     "author": "Various",
+     "keywords": [
+        "api-documentation",
+        "api",
+        "nodejs",
+        "slate",
+        "static-site-generator"
+     ],
+     "jshintConfig": {
+        "esversion": 9,
+        "strict": "implied",
+        "eqeqeq": true,
+        "node": true,
+        "undef": true,
+        "unused": true
+     },
+     "scripts": {
+        "test": "jshint gulpfile.js",
+        "prestart": "gulp build-uncompressed",
+        "start": "gulp serve",
+        "prebuild": "gulp clean",
+        "build": "gulp build-static-site",
+        "postbuild": "gulp lint && gulp publish",
+        "deploy": "deploy.sh"
+     },
+     "dependencies": {
+        "browser-sync": "~2.26",
+        "del": "~6.0",
+        "fuse.js": "~6.4",
+        "gulp": "~4.0",
+        "gulp-clean-css": "~4.3",
+        "gulp-cli": "~2.3",
+        "gulp-concat": "~2.6",
+        "gulp-ejs": "~5.1",
+        "gulp-htmlhint": "~4.0",
+        "gulp-if": "~3.0",
+        "gulp-jshint": "~2.1",
+        "gulp-prettify": "~0.5",
+        "gulp-rename": "~2.0",
+        "gulp-sass": "~4.1",
+        "gulp-uglify": "~3.0",
+        "gulp-w3c-html-validator": "~3.0",
+        "highlight.js": "~10.5",
+        "imagesloaded": "~4.1",
+        "jquery": "~3.5",
+        "jquery-highlight": "~3.5",
+        "jquery-ui": "~1.12",
+        "jquery-ui-dist": "~1.12",
+        "jquery.tocify": "~1.9",
+        "js-yaml": "~4.0",
+        "jshint": "~2.12",
+        "marked": "~1.2",
+        "merge-stream": "~2.0",
+        "node-sass": "~5.0",
+        "tocbot": "~4.12"
+     }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

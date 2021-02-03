@@ -5,14 +5,21 @@ language_tabs:
    - ruby
    - python
    - javascript
+      
 
 toc_footers:
    - <a href=https://github.com/center-key/node-slate>node-slate on GitHub</a>
    - <a href=https://www.npmjs.com/package/node-slate>Documentation powered by Slate</a>
 
 includes:
-   - main
-   - _errors
+   - description
+   - details
+   - /media/requests
+   - /messages/requests
+   - /webhooks/requests
+   - /whatsapp/requests
+
+
 
 search: true
 
