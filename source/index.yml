@@ -1,4 +1,4 @@
-title: API Reference
+title: API Instant Message
 
 language_tabs:
    - bash
@@ -8,8 +8,8 @@ language_tabs:
       
 
 toc_footers:
-   - <a href=https://github.com/center-key/node-slate>node-slate on GitHub</a>
-   - <a href=https://www.npmjs.com/package/node-slate>Documentation powered by Slate</a>
+   - <a href=https://portalinstantmessage.grupoboticario.digital/>Portal Instant Message</a>
+   
 
 includes:
    - description

@@ -23,31 +23,34 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
+$nav-bg: #f5f5f5;
 $examples-bg: #393939;
 $code-bg: #292929;
 $code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-subitem-bg: #f5f5f5;
+$nav-active-bg: #515151;
 $lang-select-border: black;
 $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
+$main-bg: #ffffff;
 $aside-notice-bg: lightblue;
-$aside-success-bg: mediumseagreen;
-$aside-warning-bg: khaki;
-$aside-error-bg: lightcoral;
+$aside-success-bg: #06b9a746; // #3D9459;
+$aside-warning-bg: #ffd89d91;
+$aside-error-bg: #db453777;
 $search-notice-bg: lightcoral;
 
 // TEXT COLORS
 ////////////////////
 $main-text: #333; // main content text color
-$nav-text: white;
+$nav-text: #000000;
 $nav-active-text: white;
 $lang-select-text: white; // color of unselected language tab text
 $lang-select-active-text: white; // color of selected language tab text
 $lang-select-pressed-text: white; // color of language tab text when mouse is pressed
+$nav-text-footer: #1174AB;
+$code-imports: #96308F;
+$code-string: #4798c4;
 
 // SIZES
 ////////////////////
@@ -72,7 +75,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 %header-font {
   @extend %default-font;
-  font-weight: bold;
+  font-weight: 450;
    }
 
 %code-font {
@@ -84,11 +87,12 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // OTHER
 ////////////////////
 $nav-active-shadow: black;
-$nav-footer-border-color: #666;
+$nav-footer-border-color: #93939349;
 $nav-embossed-border-top: black;
 $nav-embossed-border-bottom: #939393;
 $main-embossed-text-shadow: 0px 1px 0px white;
-$search-box-border-color: #666;
+$search-box-border-color: rgba(0, 0, 0, 0.63);
+$search-icon-border-color: #515151;
 
 ////////////////////////////////////////////////////////////////////////////////
 // INTERNAL
