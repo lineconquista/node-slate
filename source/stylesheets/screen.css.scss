@@ -309,6 +309,7 @@ html, body {
       box-sizing: border-box;
       display: block;
       text-shadow: $main-embossed-text-shadow;
+      text-align: justify;
       @extend %left-col;
       }
    &>ul, &>ol {
@@ -404,8 +405,8 @@ html, body {
       line-height: 1.6;
       margin-top: 0;
       }
-   img {
-      max-width: 100%;
+   .tab {
+      padding: 0px 50px;
       }
    code {
       background-color: rgba(0,0,0,0.05);
@@ -474,7 +475,6 @@ html, body {
    pre, blockquote {
       background-color: $code-bg;
       color: white;
-      padding: 2em $main-padding;
       margin: 0;
       width: $examples-width;
       float:right;
@@ -495,8 +495,13 @@ html, body {
          color: $code-string;
       }
       }
+   blockquote{
+      padding: 2em $main-padding;
+   }
    pre {
       @extend %code-font;
+      padding: 0px 10px 12px 28px;
+      display: inline;
       }
    blockquote {
       &>p {
@@ -564,3 +569,5 @@ html, body {
 .highlight, .highlight .w {
    background-color: $code-bg;
    }
+
+

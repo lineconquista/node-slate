@@ -42,7 +42,7 @@ A limitação de volume de capacidade é imposta em cada endpoint disponível da
 - __Classificação de qualidade e limites de mensagem:__
     A classificação de qualidade, os limites de mensagem e o status do número de telefone da conta do WhatsApp Business estão listados na guia Números de telefone no Gerenciador do WhatsApp.
 
-<img src="./images/guia-tel.png"  alt="Telefone" width="50%"/> 
+<img class = "tel" src="./images/guia-tel.png"  alt="Telefone" width="50%"/> 
 
 ## Classificação de qualidade
 
@@ -68,14 +68,14 @@ Veja os gráficos abaixo com exemplos de como uma empresa pode passar para o pr�
 
 __Exemplo 1:__ uma empresa fará o upgrade do Nível 1 para o Nível 2 quando enviar mensagens para um total de 2.000 usuários em um período de 7 dias.
 
-<img src= "./images/tab1.png"  alt="Telefone" width="40%"/> 
+<img class = "tab" src= "./images/tab1.png"  alt="Telefone" width="40%"/> 
 
 <br>
 <br>
 
 __Exemplo 2:__ o gráfico explica o conceito de limite de mensagens nas últimas 24 horas.
 
-<img src="./images/tab2.png" alt="Tabela exemplo 2" width="40%"/> 
+<img class = "tab" src="./images/tab2.png" alt="Tabela exemplo 2" width="40%"/> 
 
 
 ## Status

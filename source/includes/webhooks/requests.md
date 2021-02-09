@@ -1,124 +1,124 @@
 
-# Webhooks
+# Webhook
 
-## Get All Kittens
+## Recebimento de mensagens 
 
-```ruby
-require 'kittn'
+No cadastro de Webhook é possível customizar a URL das requests.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+<aside class = "warning">
+   As URLs abaixo são apenas para exemplificar o funcionamento do Webhook, suas URLs deverão ser cadastradas por um administrado juntamente com o aplicativo que irá realizar a integração.
+</aside>
+
+> ```Body: Mensagem de resposta``` 
+
+```json
+
+{
+  "event": {
+    "messageId": "i3i4321d",
+    "type": "response"
+  },
+  "clientData": {
+    "number": "+5544999999999",
+    "name": "Maria da Silva",
+    "timeLastMessage": "2020-06-18T17:07:51.271Z"
+  },
+  "message": {
+    "messageId": "5e178088a88ad9001b6e1914",
+    "contextId": "5e1789d9e73be8001ba18830",
+    "interactionsId": "0398634d-5a10-4118-b44f-02d26f3a773a",
+    "mediaType": "document",
+    "message": "Mensagem de teste",
+    "mediaData": {
+      "link": "http://linkteste.com/doc.pdf",
+      "caption": "Descrição da midia",
+      "filename": "nome-arquivo.pdf"
+    },
+    "to": "+5544999027914",
+    "from": "+554188956674",
+    "appId": "5e138ee5d53f5b001b96fa54",
+    "status": "stored",
+    "createdAt": "2020-01-09T19:35:36.639Z",
+    "updatedAt": "2020-01-09T20:19:44.942Z"
+  }
+}
+
 ```
 
-```python
-import kittn
+> ```Body: Status da mensagem``` 
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+```json
+
+{
+  "event": {
+    "messageId": "i3i4321d",
+    "type": "status",
+    "status": "sent | delivered | read"
+  },
+  "message": {
+    "messageId": "5e178088a88ad9001b6e1914",
+    "contextId": "5e1789d9e73be8001ba18830",
+    "interactionsId": "0398634d-5a10-4118-b44f-02d26f3a773a",
+    "mediaType": "document",
+    "message": "Mensagem de teste",
+    "mediaData": {
+      "link": "http://linkteste.com/doc.pdf",
+      "caption": "Descrição da midia",
+      "filename": "nome-arquivo.pdf"
+    },
+    "to": "+5544999027914",
+    "from": "+554188956674",
+    "appId": "5e138ee5d53f5b001b96fa54",
+    "status": "stored",
+    "createdAt": "2020-01-09T19:35:36.639Z",
+    "updatedAt": "2020-01-09T20:19:44.942Z"
+  }
+}
+
 ```
+
+
+> ```Request``` 
 
 ```bash
-curl "https://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl --location --request POST 'https://instantmessage.grupoboticario.digital/endereco-webhook-integracao'
+--data-raw body
+```
+
+
+```python
+
+
+import requests
+url = "https://instantmessage.grupoboticario.digital/endereco-webhook-integracao"
+
+payload= body
+headers = {}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
 ```
 
 ```javascript
-import { kittn } from 'kittn';
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': 'https://instantmessage.grupoboticario.digital/endereco-webhook-integracao',
+  'headers': {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(body)
+};
 
-const api = kittn.authorize('meowmeowmeow');
-const kittens = api.kittens.get();
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
 ```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-   {
-      "id":         1,
-      "name":       "Fluffums",
-      "breed":      "calico",
-      "fluffiness": 6,
-      "cuteness":   7
-   },
-   {
-      "id":         2,
-      "name":       "Max",
-      "breed":      "unknown",
-      "fluffiness": 5,
-      "cuteness":   10
-   }
-]
-```
-
-This endpoint retrieves all kittens.
 
 ### HTTP Request
 
-`GET https://example.com/api/kittens`
+`POST https://instantmessage.grupoboticario.digital/endereco-webhook-integracao`
 
-### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class=success>
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```bash
-curl "https://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-import { kittn } from 'kittn';
-
-const api = kittn.authorize('meowmeowmeow');
-const max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "id":         2,
-   "name":       "Max",
-   "breed":      "unknown",
-   "fluffiness": 5,
-   "cuteness":   10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class=warning>
-Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.
-</aside>
-
-### HTTP Request (with ID)
-
-`GET https://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve

@@ -1,124 +1,314 @@
 
 # Whatsapp
 
-## Get All Kittens
+## Status do número do whatsapp 
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+> ```Request``` 
+
+```bash
+curl --location --request GET 'https://instantmessage.grupoboticario.digital/v1/whatsapp/contacts/:number'
+--header 'Authorization': JWT
 ```
 
 ```python
-import kittn
+import requests
+url = "https://instantmessage.grupoboticario.digital/v1/whatsapp/contacts/:number"
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+payload = {}
+headers = {
+  'Authorization': JWT
+}
 
-```bash
-curl "https://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+response = requests.request("GET", url, headers=headers, data=payload)
 
-```javascript
-import { kittn } from 'kittn';
-
-const api = kittn.authorize('meowmeowmeow');
-const kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-   {
-      "id":         1,
-      "name":       "Fluffums",
-      "breed":      "calico",
-      "fluffiness": 6,
-      "cuteness":   7
-   },
-   {
-      "id":         2,
-      "name":       "Max",
-      "breed":      "unknown",
-      "fluffiness": 5,
-      "cuteness":   10
-   }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET https://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class=success>
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```bash
-curl "https://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
 ```
 
 ```javascript
-import { kittn } from 'kittn';
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://instantmessage.grupoboticario.digital/v1/whatsapp/contacts/:number',
+  'headers': {
+    'Authorization': JWT
+  }
+};
 
-const api = kittn.authorize('meowmeowmeow');
-const max = api.kittens.get(2);
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
 ```
 
-> The above command returns JSON structured like this:
+> ```Response: 200``` 
+
+```
+
+body
+```
 
 ```json
 {
-   "id":         2,
-   "name":       "Max",
-   "breed":      "unknown",
-   "fluffiness": 5,
-   "cuteness":   10
+  "valid": true
 }
 ```
 
-This endpoint retrieves a specific kitten.
 
-<aside class=warning>
-Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.
-</aside>
+Consulta o status de um determinado número 
 
-### HTTP Request (with ID)
 
-`GET https://example.com/kittens/<ID>`
+### HTTP Request
+
+`GET https://instantmessage.grupoboticario.digital/v1/whatsapp/contacts/:number`
+
+
+## Lista de janelas abertas
+
+
+> ```Request``` 
+
+```bash
+curl --location --request GET 'https://instantmessage.grupoboticario.digital/v1/whatsapp/chatwindow'
+--header 'Authorization': JWT
+```
+
+```python
+import requests
+url = "GET https://instantmessage.grupoboticario.digital/v1/whatsapp/chatwindow"
+
+payload={}
+headers = {
+  'Authorization': JWT
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://instantmessage.grupoboticario.digital/v1/whatsapp/chatwindow',
+  'headers': {
+    'Authorization': JWT
+  },
+};
+
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+```
+
+> ```Response: 200``` 
+
+```
+body
+```
+
+```json
+{
+  "contacts": [
+    {
+      "phone": "+5500999911111",
+      "name": "João Silva",
+      "closesIn": "2020-09-03T12:49:59.496Z"
+    }
+  ]
+}
+```
+
+
+Consulta de janelas abertas para o número.
+
+### HTTP Request
+
+`GET https://instantmessage.grupoboticario.digital/v1/whatsapp/chatwindow`
+
+
+
+## Status da janela de conversa 
+
+
+> ```Request``` 
+
+```bash
+curl --location --request GET 'https://instantmessage.grupoboticario.digital/v1/whatsapp/chatwindow/:number'
+--header 'Authorization': JWT
+```
+
+```python
+import requests
+url = "https://instantmessage.grupoboticario.digital/v1/whatsapp/chatwindow/:number"
+payload={}
+headers = {
+  'Authorization': JWT
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://instantmessage.grupoboticario.digital/v1/whatsapp/chatwindow/:number',
+  'headers': {
+    'Authorization': JWT
+  },
+};
+
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+```
+
+
+> ```Response: 200``` 
+<!-- 
+`` 
+Content-Type não especificado 
+`` -->
+
+```
+body
+```
+
+```json
+{
+  "open": true,
+  "closesIn": "2020-09-03T12:49:59.496Z"
+}
+```
+
+Consulta status da janela para o contato.
+
+### HTTP Request
+
+`GET https://instantmessage.grupoboticario.digital/v1/whatsapp/chatwindow/:number`
+
+
+## Lista de templates  
+
+
+> ```Request``` 
+
+```bash
+curl --location --request GET 'https://instantmessage.grupoboticario.digital/v1/whatsapp/templates'
+--header 'Authorization': JWT
+```
+
+```python
+import requests
+url = "https://instantmessage.grupoboticario.digital/v1/whatsapp/templates"
+
+payload={}
+headers = {
+  'Authorization': JWT
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://instantmessage.grupoboticario.digital/v1/whatsapp/templates',
+  'headers': {
+    'Authorization': JWT
+  },
+};
+
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+```
+
+
+> ```Response: 200``` 
+
+```
+body
+```
+
+```json
+{
+  "data": [
+    {
+      "facebookId": "708927800029953",
+      "category": "ACCOUNT_UPDATE",
+      "components": [
+        {
+          "type": "HEADER",
+          "format": "TEXT",
+          "text": "Hi {{1}}"
+        },
+        {
+          "type": "BODY",
+          "text": "Template text {{1}}"
+        },
+        {
+          "type": "FOOTER",
+          "text": "Footer text"
+        },
+        {
+          "type": "BUTTONS",
+          "buttons": [
+            {
+              "type": "PHONE_NUMBER",
+              "text": "Make a call",
+              "phone_number": "+5511976333566"
+            },
+            {
+              "type": "QUICK_REPLY",
+              "text": "I agree"
+            },
+            {
+              "type": "URL",
+              "text": "Visit our website",
+              "url": "`http://website.com/{{1}}"
+            }
+          ]
+        }
+      ],
+      "language": "pt_BR",
+      "name": "template_name",
+      "status": "APPROVED"
+    }
+  ],
+  "next": "NWZiZDllOGVjZDhmYjA3ODQyNDg3NjNm",
+  "previous": "NWZiZDllOGVjZDhmYjA3ODQyNDg3NjNm"
+}
+```
+
+Gerenciamento de templates cadastrados no Facebook Business
+
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+<br>
+
+Parameter | Description | Example
+--------- | ----------- | --------
+name | filtro de nome do template (opcional) | reply
+next | token de cursor para a página seguinte (opcional) | NWZiZDllOGVjZDhmYjA3ODQyNDg3NjNm
+previous | token de cursor para a página anterior (opcional) | NWZiZDllOGVjZDhmYjA3ODQyNDg3NjNm
+
+
+### HTTP Request
+
+<br>
+
+`GET https://instantmessage.grupoboticario.digital/v1/whatsapp/templates`
+
+

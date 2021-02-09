@@ -1,124 +1,261 @@
 
 # Media
 
-## Get All Kittens
+## Upload 
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+> ```Request``` 
+
+```bash
+curl --location --request POST 'https://instantmessage.grupoboticario.digital/v1/medias'
+--header 'Authorization': JWT
+--header 'Content-Type:' <content-type da mídia>
+--body binary
 ```
 
 ```python
-import kittn
+import requests
+url = "https://instantmessage.grupoboticario.digital/v1/medias"
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+payload = binary
+headers = {
+  'Authorization': JWT,
+  'Content-Type': <content-type da mídia>
+}
 
-```bash
-curl "https://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+response = requests.request("POST", url, headers=headers, data=payload)
 
-```javascript
-import { kittn } from 'kittn';
-
-const api = kittn.authorize('meowmeowmeow');
-const kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-   {
-      "id":         1,
-      "name":       "Fluffums",
-      "breed":      "calico",
-      "fluffiness": 6,
-      "cuteness":   7
-   },
-   {
-      "id":         2,
-      "name":       "Max",
-      "breed":      "unknown",
-      "fluffiness": 5,
-      "cuteness":   10
-   }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET https://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class=success>
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```bash
-curl "https://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
 ```
 
 ```javascript
-import { kittn } from 'kittn';
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': 'https://instantmessage.grupoboticario.digital/v1/medias',
+  'headers': {
+    'Authorization': JWT,
+    'Content-Type': <content-type da mídia>
+  },
+  body: file contents here
 
-const api = kittn.authorize('meowmeowmeow');
-const max = api.kittens.get(2);
+};
+
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
 ```
 
-> The above command returns JSON structured like this:
+> ```Response: 200``` 
+
+```
+body
+```
 
 ```json
 {
-   "id":         2,
-   "name":       "Max",
-   "breed":      "unknown",
-   "fluffiness": 5,
-   "cuteness":   10
+  "id": "d9a63dffc1e0fd7e4e507de78bb0db5c"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+
+> ```Response: 400``` 
+
+```
+body
+```
+
+```json
+{
+   "error": "É necessário enviar a mídia no corpo da requisição"
+}
+```
+
+É necessário enviar o binário da midia no corpo da requisição e como retorno irá obter o id da midia.
+Uma limitação deste endpoint é que o binário deve ter no máximo 10mb. 
+
+
+### HTTP Request
+
+`POST https://instantmessage.grupoboticario.digital/v1/medias`
 
 <aside class=warning>
-Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.
+Caso seja necessário o upload de arquivos maiores, utilize o modelo assíncrono.
 </aside>
 
-### HTTP Request (with ID)
+### Fluxo de utilização
 
-`GET https://example.com/kittens/<ID>`
+<br>
+
+<img class = "tab" src= "./images/upload_find_media.png"  width="40%"/> 
+
+<img class = "tab" src= "./images/upload_send_media_message.png"  width="40%"/> 
+
+
+
+## Upload Assíncrono
+
+
+> ```Request``` 
+
+```bash
+curl --location --request GET 'https://instantmessage.grupoboticario.digital/v1/medias/async'
+--header 'Authorization': JWT
+--header 'Content-Type': <content-type da mídia>
+```
+
+```python
+import requests
+url = "https://instantmessage.grupoboticario.digital/v1/medias/async"
+
+payload={}
+headers = {
+  'Authorization': JWT,
+  'Content-Type': <content-type da mídia>
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://instantmessage.grupoboticario.digital/v1/medias/async',
+  'headers': {
+    'Authorization': JWT,
+    'Content-Type': <content-type da mídia>
+  },
+};
+
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+```
+
+> ```Response: 200``` 
+
+```
+body
+```
+
+```json
+{
+  "id": "d9a63dffc1e0fd7e4e507de78bb0db5c",
+  "url": "<upload url>"
+}
+```
+
+
+> ```Response: 400``` 
+
+
+```
+body
+```
+
+```json
+{
+  "error": "É necessário informar o header Content-Type"
+}
+```
+
+
+O upload assíncrono de mídias não possui limite de tamanho, porém o processo é realizado em duas etapas:
+
+- Deve ser realizada uma requisição informando o “Content-Type” da mídia que deseja fazer upload. Este endpoint retornará o ID da mídia e uma URL para a qual a mídia deverá ser enviada.
+- Deve ser enviada requisição PUT para esta URL com a mídia como corpo.
+
+<br>
+
+<aside class = "success">
+  Após o upload, você poderá enviar a mensagem com o ID da mídia recebido na primeira requisição.
+</aside>
+
+### HTTP Request
+
+`GET https://instantmessage.grupoboticario.digital/v1/medias/async`
+
+
+
+## Consulta 
+
+
+> ```Request``` 
+
+```bash
+curl --location --request GET 'https://instantmessage.grupoboticario.digital/v1/medias/{{id}}'
+--header 'Authorization': JWT
+```
+
+```python
+import requests
+url = "https://instantmessage.grupoboticario.digital/v1/medias/{{id}}"
+
+payload={}
+headers = {
+  'Authorization': JWT
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://instantmessage.grupoboticario.digital/v1/medias/{{id}}',
+  'headers': {
+    'Authorization': JWT
+  },
+};
+
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+```
+
+> ```Response: 302``` 
+
+```
+header: "Location: URL media"
+
+```
+
+
+> ```Response: 400``` 
+
+```
+body
+```
+
+```json
+{
+  "error": "Arquivo não encontrado!"
+}
+```
+
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+<br>
+
+Parameter | Description | Example
+--------- | ----------- | --------
+id | id da mídia retornada no método de upload |  d9a63dffc1e0fd7e4e507de78bb0db5c
+
+
+### HTTP Request
+
+<br>
+
+`GET https://instantmessage.grupoboticario.digital/v1/medias/{{id}}`
+
+
